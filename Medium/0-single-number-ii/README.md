@@ -4,7 +4,7 @@
 
 **Difficulty:** 🟡 Medium
 
-**LeetCode Link:** [Single Number Ii](https://leetcode.com/problems/single-number-ii/submissions/2157438028/)
+**LeetCode Link:** [Single Number Ii](https://leetcode.com/problems/single-number-ii/)
 
 **Language:** Python
 
@@ -15,9 +15,7 @@
 ## Performance
 
 - **Runtime:** 0
-ms (Beats 100.00%)
-- **Memory:** 45.16
-MB (Beats 100.00%)
+- **Memory:** 45.2
 
 ---
 
@@ -71,7 +69,14 @@ See [solution.py](solution.py) for the complete implementation.
 ```python
 class Solution {
     public int singleNumber(int[] nums) {
-        
+        int one = 0, twos = 0;
+
+        for (int n : nums) {
+            one = (one ^ n) & ~twos;
+            twos = (twos ^ n) & ~one;
+        }
+
+        return one;
     }
 }
 ```
